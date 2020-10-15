@@ -1,0 +1,13 @@
+name: "web"
+version: "v0.0.1"
+database:
+  addr: "xxx:5432"
+  user: "postgres"
+  password: "shijinting0510"
+  db: "test"
+redis:
+  host: "127.0.0.1"
+  port: 6379
+  password: ""
+  db: 0
+  pool_size: 100

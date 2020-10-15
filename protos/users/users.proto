@@ -1,0 +1,19 @@
+syntax= "proto3";
+package users;
+message UserRegisterRequest {
+  string username = 1;
+  string email = 2;
+  string password = 3;
+  string passwordRepeat= 4;
+}
+message UserRegisterResponse {
+  int32 code = 1;
+  string msg = 2;
+  CommentResponse data = 3;
+}
+message CommentResponse {
+  int64 id = 1;
+}
+service UserService {
+  rpc Register(UserRegisterRequest)returns(UserRegisterResponse);
+}
