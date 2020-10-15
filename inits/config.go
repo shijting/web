@@ -27,7 +27,7 @@ type RedisConfig struct {
 	PoolSize     int    `mapstructure:"pool_size"`
 }
 
-func Init(filePath string) (err error) {
+func InitConfig(filePath string) (err error) {
 
 	viper.SetConfigFile(filePath)
 

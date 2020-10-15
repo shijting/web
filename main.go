@@ -9,7 +9,7 @@ import (
 const configPath ="configs/config.yaml"
 
 func main()  {
-	err := inits.Init(configPath)
+	err := inits.InitConfig(configPath)
 	if err !=nil {
 		log.Fatal(err)
 	}

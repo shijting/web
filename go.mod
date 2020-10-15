@@ -4,7 +4,9 @@ go 1.15
 
 require (
 	github.com/fsnotify/fsnotify v1.4.9
+	github.com/go-pg/pg/v10 v10.3.2
 	github.com/golang/protobuf v1.4.3
+	github.com/grpc-ecosystem/grpc-gateway/v2 v2.0.0
 	github.com/spf13/viper v1.7.1
 	golang.org/x/net v0.0.0-20201010224723-4f7140c49acb // indirect
 	golang.org/x/sys v0.0.0-20201015000850-e3ed0017c211 // indirect

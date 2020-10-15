@@ -1,10 +1,13 @@
 package users
 
-import "context"
+import (
+	"context"
+	"github.com/shijting/web/protos"
+)
 
-type usersServiceImpl struct {}
+type UsersServiceImpl struct {}
 
-func (*usersServiceImpl) Register(ctx context.Context, req *UserRegisterRequest) (*UserRegisterResponse, error) {
+func (*UsersServiceImpl) Register(ctx context.Context, req *protos.UserRegisterRequest) (*protos.UserRegisterResponse, error) {
 
 	return nil, nil
 }

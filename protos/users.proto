@@ -1,5 +1,5 @@
 syntax= "proto3";
-package users;
+package protos;
 message UserRegisterRequest {
   string username = 1;
   string email = 2;
@@ -15,5 +15,7 @@ message CommentResponse {
   int64 id = 1;
 }
 service UserService {
-  rpc Register(UserRegisterRequest)returns(UserRegisterResponse);
+  rpc Register(UserRegisterRequest)returns(UserRegisterResponse){
+
+  };
 }
