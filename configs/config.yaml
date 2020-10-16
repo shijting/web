@@ -11,3 +11,9 @@ redis:
   password: ""
   db: 0
   pool_size: 100
+logger:
+  logger_file: "web_log"
+grpc_server:
+  port: 8000
+grpc_gw_server:
+  port: 8001

@@ -12,6 +12,9 @@ type AppConfig struct {
 	Version   string `mapstructure:"version"`
 	*DatabaseConfig `mapstructure:"database"`
 	*RedisConfig `mapstructure:"redis"`
+	*LoggerConfig `mapstructure:"logger"`
+	*GrpcServerConfig `mapstructure:"grpc_server"`
+	*GrpcGwServerConfig `mapstructure:"grpc_gw_server"`
 }
 type DatabaseConfig struct {
 	Addr     string `mapstructure:"host"`
@@ -25,6 +28,15 @@ type RedisConfig struct {
 	Port         int    `mapstructure:"port"`
 	DB           int    `mapstructure:"db"`
 	PoolSize     int    `mapstructure:"pool_size"`
+}
+type LoggerConfig struct {
+	LoggerFile         string `mapstructure:"logger_file"`
+}
+type GrpcServerConfig struct {
+	Port         int `mapstructure:"port"`
+}
+type GrpcGwServerConfig struct {
+	Port         int `mapstructure:"port"`
 }
 
 func InitConfig(filePath string) (err error) {

@@ -5,9 +5,9 @@ import (
 	"github.com/shijting/web/protos"
 )
 
-type UsersServiceImpl struct {}
+type UserServiceImpl struct {}
 
-func (*UsersServiceImpl) Register(ctx context.Context, req *protos.UserRegisterRequest) (*protos.UserRegisterResponse, error) {
+func (*UserServiceImpl) Register(ctx context.Context, req *protos.UserRegisterRequest) (*protos.UserRegisterResponse, error) {
 
-	return nil, nil
+	return &protos.UserRegisterResponse{Code: 200, Msg: req.GetUsername() + "---"+req.Email}, nil
 }
