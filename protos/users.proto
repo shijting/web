@@ -2,13 +2,15 @@ syntax= "proto3";
 package protos;
 import "google/api/annotations.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
+import "google/protobuf/any.proto";
+import "google/protobuf/field_mask.proto";
 //option go_package = "github.com/shijting/web/protos;protos";
 option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
   info: {
     version: "1.0";
   };
   external_docs: {
-    url: "localhost:8001/";
+    url: "http://localhost:8001/";
     description: "gRPC-gateway web repository";
   }
   schemes: HTTP;
@@ -21,8 +23,9 @@ message UserRegisterRequest {
 }
 message UserRegisterResponse {
   int32 code = 1;
-  string msg = 2;
-  CommentResponse data = 3;
+  string message = 2;
+  google.protobuf.Any data = 3;
+  google.protobuf.FieldMask mask = 4;
 }
 message CommentResponse {
   int64 id = 1;

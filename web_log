@@ -1,21 +1,2 @@
-{"level":"info","msg":"TEST...","time":"2020-10-16T09:32:54+08:00"}
-{"animal":"walrus","level":"info","msg":"A group of walrus emerges from the ocean","size":10,"time":"2020-10-16T09:47:08+08:00"}
-{"level":"fatal","msg":"listen tcp: lookup tcp/ὀ: getaddrinfow: The specified class was not found.","time":"2020-10-16T10:25:04+08:00"}
-{"level":"fatal","msg":"listen tcp: lookup tcp/ὀ: getaddrinfow: The specified class was not found.","time":"2020-10-16T10:26:19+08:00"}
-{"level":"fatal","msg":"listen tcp: lookup tcp/ὀ: getaddrinfow: The specified class was not found.","time":"2020-10-16T10:26:28+08:00"}
-{"level":"fatal","msg":"listen tcp: lookup tcp/ὀ: getaddrinfow: The specified class was not found.","time":"2020-10-16T10:27:33+08:00"}
-{"fullMethod":"/protos.UserService/Register","level":"error","msg":"123sdlkfjsdlkfj","time":"2020-10-16T10:58:52+08:00"}
-{"fullMethod":"/protos.UserService/Register","level":"error","msg":"123sdlkfjsdlkfj","time":"2020-10-16T11:08:23+08:00"}
-{"fullMethod":"/protos.UserService/Register","level":"error","msg":"123sdlkfjsdlkfj","time":"2020-10-16T11:08:24+08:00"}
-{"fullMethod":"/protos.UserService/Register","level":"error","msg":"123sdlkfjsdlkfj","time":"2020-10-16T11:08:25+08:00"}
-{"fullMethod":"/protos.UserService/Register","level":"error","msg":"123sdlkfjsdlkfj","time":"2020-10-16T11:08:25+08:00"}
-{"fullMethod":"/protos.UserService/Register","level":"error","msg":"123sdlkfjsdlkfj","time":"2020-10-16T11:08:25+08:00"}
-{"fullMethod":"/protos.UserService/Register","level":"error","msg":"123sdlkfjsdlkfj","time":"2020-10-16T11:08:25+08:00"}
-{"fullMethod":"/protos.UserService/Register","level":"error","msg":"123sdlkfjsdlkfj","time":"2020-10-16T11:08:26+08:00"}
-{"fullMethod":"/protos.UserService/Register","level":"error","msg":"123sdlkfjsdlkfj","time":"2020-10-16T11:08:26+08:00"}
-{"fullMethod":"/protos.UserService/Register","level":"error","msg":"123sdlkfjsdlkfj","time":"2020-10-16T11:08:26+08:00"}
-{"fullMethod":"/protos.UserService/Register","level":"error","msg":"123sdlkfjsdlkfj","time":"2020-10-16T11:08:26+08:00"}
-{"fullMethod":"/protos.UserService/Register","level":"error","msg":"panic 了","request":{"username":"sldfj"},"time":"2020-10-16T11:11:08+08:00"}
-{"fullMethod":"/protos.UserService/Register","level":"error","msg":"panic 了","quest":{"username":"lihua","email":"123@qq.com"},"time":"2020-10-16T11:20:14+08:00"}
-{"level":"fatal","msg":"listen tcp :8001: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted.","time":"2020-10-16T11:33:03+08:00"}
-{"level":"fatal","msg":"listen tcp :8001: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted.","time":"2020-10-16T11:33:42+08:00"}
+{"duration":0,"level":"error","method":"/protos.UserService/Register","msg":"\u003cnil\u003e","query":{"username":"string","email":"string","password":"string","passwordRepeat":"string"},"time":"2020-10-17T16:53:21+08:00"}
+{"duration":0,"level":"error","method":"/protos.UserService/Register","msg":"\u003cnil\u003e","query":{"username":"string","email":"string","password":"string","passwordRepeat":"string"},"time":"2020-10-17T16:54:33+08:00"}
