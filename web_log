@@ -1,2 +1,0 @@
-{"duration":0,"level":"error","method":"/protos.UserService/Register","msg":"\u003cnil\u003e","query":{"username":"string","email":"string","password":"string","passwordRepeat":"string"},"time":"2020-10-17T16:53:21+08:00"}
-{"duration":0,"level":"error","method":"/protos.UserService/Register","msg":"\u003cnil\u003e","query":{"username":"string","email":"string","password":"string","passwordRepeat":"string"},"time":"2020-10-17T16:54:33+08:00"}

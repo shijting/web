@@ -1,18 +1,15 @@
 package services
 
-import (
-	"context"
-	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
-	"google.golang.org/grpc/status"
-	"net/http"
-)
+import "golang.org/x/crypto/bcrypt"
 
-type ErrorHandler func(ctx context.Context, mux *runtime.ServeMux, marshaler runtime.Marshaler, w http.ResponseWriter, r *http.Request, err error)
-func CustomErrorHandler(ctx context.Context, mux *runtime.ServeMux, marshaler runtime.Marshaler, w http.ResponseWriter, r *http.Request, err error)  {
-	st := status.Convert(err)
-	httpStatus := runtime.HTTPStatusFromCode(st.Code())
-	w.WriteHeader(httpStatus)
-	w.Write([]byte(st.Message()))
-	//mux.errorHandler = Abc()
+// 生成密码
+func HashPassword(password string) (string, error) {
+	bytes, err := bcrypt.GenerateFromPassword([]byte(password), 12)
+	return string(bytes), err
+}
 
+// 校验密码
+func CheckPasswordHash(password, hash string) bool {
+	err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
+	return err == nil
 }

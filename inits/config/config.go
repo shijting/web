@@ -1,4 +1,4 @@
-package inits
+package config
 
 import (
 	"fmt"
@@ -8,16 +8,16 @@ import (
 
 var Conf = new(AppConfig)
 type AppConfig struct {
-	Name      string `mapstructure:"name"`
-	Version   string `mapstructure:"version"`
-	*DatabaseConfig `mapstructure:"database"`
-	*RedisConfig `mapstructure:"redis"`
-	*LoggerConfig `mapstructure:"logger"`
-	*GrpcServerConfig `mapstructure:"grpc_server"`
+	Name                string `mapstructure:"name"`
+	Version             string `mapstructure:"version"`
+	*DatabaseConfig     `mapstructure:"database"`
+	*RedisConfig        `mapstructure:"redis"`
+	*LoggerConfig       `mapstructure:"logger"`
+	*GrpcServerConfig   `mapstructure:"grpc_server"`
 	*GrpcGwServerConfig `mapstructure:"grpc_gw_server"`
 }
 type DatabaseConfig struct {
-	Addr     string `mapstructure:"host"`
+	Addr     string `mapstructure:"addr"`
 	User     string `mapstructure:"user"`
 	Passwrod string `mapstructure:"password"`
 	DB       string `mapstructure:"db"`
@@ -39,7 +39,7 @@ type GrpcGwServerConfig struct {
 	Port         int `mapstructure:"port"`
 }
 
-func InitConfig(filePath string) (err error) {
+func Init(filePath string) (err error) {
 
 	viper.SetConfigFile(filePath)
 
@@ -57,10 +57,14 @@ func InitConfig(filePath string) (err error) {
 
 	viper.WatchConfig()
 	viper.OnConfigChange(func(in fsnotify.Event) {
-		fmt.Println("配置文件修改了...")
+		fmt.Println("配置文件被修改了...")
 		if err := viper.Unmarshal(Conf); err != nil {
 			fmt.Printf("viper.Unmarshal failed, err:%v\n", err)
 		}
+		// 重置psql
+		//if err :=psql.Reload();err !=nil {
+		//	fmt.Printf("reload psql failed, err:%v\n", err)
+		//}
 	})
 	return
 }

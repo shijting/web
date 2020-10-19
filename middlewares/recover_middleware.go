@@ -2,7 +2,8 @@ package middlewares
 
 import (
 	"context"
-	"github.com/shijting/web/inits"
+	"fmt"
+	"github.com/shijting/web/inits/logger"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -18,11 +19,12 @@ func GrpcRecover(
 	defer func() {
 		if r := recover(); r != nil {
 			// todo
-			inits.GetLogger().
+			logger.GetLogger().
 				WithField("method", info.FullMethod).
 				WithField("query", req).
 				Error(err)
-			err = status.Errorf(codes.InvalidArgument, "参数无效:%v", r)
+			fmt.Println("panic:", r)
+			err = status.Errorf(codes.Internal, "系统错误！")
 		}
 	}()
 	resp, err =handler(ctx, req)

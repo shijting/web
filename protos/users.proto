@@ -1,44 +1,64 @@
-syntax= "proto3";
+syntax = "proto3";
 package protos;
 import "google/api/annotations.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
-import "google/protobuf/any.proto";
-import "google/protobuf/field_mask.proto";
-//option go_package = "github.com/shijting/web/protos;protos";
+import "google/protobuf/timestamp.proto";
+import "validate.proto";
+option go_package = ".;protos";
+
+
 option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
   info: {
     version: "1.0";
   };
   external_docs: {
     url: "http://localhost:8001/";
-    description: "gRPC-gateway web repository";
+    description: "gRPC-gateway web";
   }
   schemes: HTTP;
 };
 message UserRegisterRequest {
-  string username = 1;
-  string email = 2;
-  string password = 3;
-  string passwordRepeat= 4;
+  string username = 1 [(validate.rules).string = {min_len: 5, max_len: 20}];
+  string email = 2 [(validate.rules).string.email = true];
+  string password = 3 [(validate.rules).string = {min_len: 6, max_len: 30}];
+  string passwordRepeat = 4 [(validate.rules).string = {min_len: 6, max_len: 30}];
 }
-message UserRegisterResponse {
+message UserLoginRequest {
+  string username = 1 [(validate.rules).string = {min_len: 5, max_len: 20}];
+  string password = 2 [(validate.rules).string = {min_len: 6, max_len: 30}];
+}
+message UserResponse {
   int32 code = 1;
   string message = 2;
-  google.protobuf.Any data = 3;
-  google.protobuf.FieldMask mask = 4;
+  User details = 3;
 }
-message CommentResponse {
+message User {
   int64 id = 1;
+  string username = 2;
+  string email = 3;
+  google.protobuf.Timestamp Created_date = 4;
+  google.protobuf.Timestamp updated_date = 5;
 }
 service UserService {
-  rpc Register(UserRegisterRequest)returns(UserRegisterResponse){
+  rpc Register(UserRegisterRequest)returns(UserResponse){
     option (google.api.http) = {
       post: "/api/v1/register",
       body: "*"
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      summary: "用户注册"
-      description: "用户注册"
+      summary: "用户注册",
+      description: "用户注册",
+      tags: "Users"
+    };
+  };
+  rpc Login(UserLoginRequest)returns(UserResponse){
+    option (google.api.http) = {
+      post: "/api/v1/login",
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "用户登录",
+      description: "根据username与password进行登录",
       tags: "Users"
     };
   };

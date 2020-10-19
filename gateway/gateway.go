@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/rakyll/statik/fs"
-	"github.com/shijting/web/inits"
+	"github.com/shijting/web/inits/config"
 	"github.com/shijting/web/protos"
 	_ "github.com/shijting/web/statik"
 	"google.golang.org/grpc"
@@ -18,7 +18,7 @@ import (
 func RunGrpcGwServer(quit chan error) {
 	mux := runtime.NewServeMux()
 	opts := []grpc.DialOption{grpc.WithInsecure()}
-	grpcPort := inits.Conf.GrpcServerConfig.Port
+	grpcPort := config.Conf.GrpcServerConfig.Port
 	conn, err := grpc.DialContext(
 		context.Background(),
 		fmt.Sprintf(":%d", grpcPort),
@@ -29,13 +29,12 @@ func RunGrpcGwServer(quit chan error) {
 	}
 	err = protos.RegisterUserServiceHandler(context.Background(), mux, conn)
 	if err != nil {
-		fmt.Println(111)
 		quit <- err
 	}
 
 	oa := getOpenAPIHandler(quit)
 
-	grpcGwPort := inits.Conf.GrpcGwServerConfig.Port
+	grpcGwPort := config.Conf.GrpcGwServerConfig.Port
 	if grpcGwPort == 0 {
 		grpcGwPort = 8001
 	}
@@ -55,7 +54,6 @@ func RunGrpcGwServer(quit chan error) {
 	log.Println("Serving gRPC-gateway on port:",grpcGwPort)
 	err = gwServer.ListenAndServe()
 	if err !=nil {
-		fmt.Println(2222)
 		quit <- err
 	}
 }
@@ -63,12 +61,10 @@ func RunGrpcGwServer(quit chan error) {
 func getOpenAPIHandler(quit chan error) http.Handler {
 	err := mime.AddExtensionType(".svg", "image/svg+xml")
 	if err != nil {
-		fmt.Println(4444)
 		quit <- err
 	}
 	statikFS, err := fs.New()
 	if err != nil {
-		fmt.Println(3333)
 		quit <- err
 	}
 	// Serve the contents over HTTP.

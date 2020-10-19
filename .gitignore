@@ -1,2 +1,4 @@
 .idea
 *.exe
+configs/config.yaml
+log

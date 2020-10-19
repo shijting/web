@@ -2,7 +2,7 @@ package middlewares
 
 import (
 	"context"
-	"github.com/shijting/web/inits"
+	"github.com/shijting/web/inits/logger"
 	"google.golang.org/grpc"
 	"time"
 )
@@ -15,10 +15,10 @@ func GrpcLogger(
 	timeStart := time.Now()
 	resp, err =handler(ctx, req)
 	timeElapsed := time.Now().Sub(timeStart)
-	inits.GetLogger().
+	logger.GetLogger().
 		WithField("method", info.FullMethod).
 		WithField("query", req).
 		WithField("duration", timeElapsed).
-		Error(err)
+		Info()
 	return
 }
