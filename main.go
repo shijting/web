@@ -31,8 +31,12 @@ func main() {
 	if err := psql.Init(); err != nil {
 		glog.Fatal(err)
 	}
-	defer psql.Close()
 	quit := make(chan error, 0)
+
+	defer func() {
+		psql.Close()
+		close(quit)
+	}()
 	// 注册grpc服务
 	go runGrpcServer(quit)
 	// grpc-gateway服务
@@ -54,7 +58,7 @@ func runGrpcServer(quit chan error) {
 	}
 	serv := grpc.NewServer(
 		grpc.UnaryInterceptor(grpc_middleware.ChainUnaryServer(
-			middlewares.GrpcRecover, middlewares.GrpcLogger,
+			middlewares.GrpcRecover, middlewares.GrpcLogger,middlewares.GrpcValidate,
 		)),
 	)
 	protos.RegisterUserServiceServer(serv, users.NewUserServiceImpl())

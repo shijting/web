@@ -2,3 +2,4 @@
 *.exe
 configs/config.yaml
 log
+test.go

@@ -25,9 +25,9 @@ func NewUserServiceImpl() *UserServiceImpl {
 func (u *UserServiceImpl) Register(ctx context.Context, req *protos.UserRegisterRequest) (*protos.UserResponse, error) {
 	//u.mu.Lock()
 	//defer u.mu.Unlock()
-	if err :=req.Validate();err !=nil {
-		return nil, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
+	//if err :=req.Validate();err !=nil {
+	//	return nil, status.Errorf(codes.InvalidArgument, "%v", err)
+	//}
 	if req.GetPassword() != req.GetPasswordRepeat() {
 		return nil, status.Errorf(codes.InvalidArgument, "两次密码不一致")
 	}
@@ -52,11 +52,9 @@ func (u *UserServiceImpl) Register(ctx context.Context, req *protos.UserRegister
 
 // 用户登录
 func (u *UserServiceImpl) Login(ctx context.Context, req *protos.UserLoginRequest) (*protos.UserResponse, error) {
-	//u.mu.Lock()
-	//defer u.mu.Unlock()
-	if err :=req.Validate();err !=nil {
-		return nil, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
+	//if err :=req.Validate();err !=nil {
+	//	return nil, status.Errorf(codes.InvalidArgument, "%v", err)
+	//}
 	result,err := dao.GetOneByUsername(nil, req.GetUsername())
 	if err !=nil {
 		return nil, status.Errorf(codes.InvalidArgument, "登录失败: 用户名或密码不正确")
@@ -66,6 +64,7 @@ func (u *UserServiceImpl) Login(ctx context.Context, req *protos.UserLoginReques
 	}
 	// 登录成功
 	// TODO generate token
+	// ......
 	userInfo := &protos.User{}
 	copier.Copy(userInfo, result)
 	return &protos.UserResponse{Code: int32(codes.OK), Message: "登录成功", Details: userInfo}, nil
